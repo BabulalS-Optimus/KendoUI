@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Welcome to Kendo UI Mobile!</title>
+	</head>
+    <body>
+	
+		<div data-role="view" data-init="initBar">
+			<a href="#" id="link">Link</a>
+		</div>
+		<script>
+			function initBar(e) {
+				e.view.element.find("#link").kendoMobileButton();
+			}
+		</script>
+		
+	</body>
+</html>

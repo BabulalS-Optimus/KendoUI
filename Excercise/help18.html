@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Help :: Welcome to Kendo UI Mobile!</title>
+	</head>
+    <body>
+	
+		<div data-role="view" data-init="initHelp" data-reload="true">
+			There is some text for Help regarding this application
+			<a href="#" id="link">Link</a>
+		</div>
+		<script>
+			function initHelp(e) {
+				e.view.element.find("#link").kendoMobileButton();
+			}
+		</script>
+		
+	</body>
+</html>
