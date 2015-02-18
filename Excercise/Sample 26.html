@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Welcome to Kendo UI Mobile!</title>
+        <link href="http://cdn.kendostatic.com/2014.1.318/styles/kendo.mobile.all.min.css" rel="stylesheet" />
+        <script src="http://cdn.kendostatic.com/2014.1.318/js/jquery.min.js"></script>
+        <script src="http://cdn.kendostatic.com/2014.1.318/js/kendo.all.min.js"></script>
+    </head>
+    <body>
+		<div data-role="view"> Hello !!!!
+		</div>
+		
+		<div data-role="layout" data-id="def">
+			<div data-role="header">Header</div>
+		</div>
+		
+        <script>
+			var app= new kendo.mobile.Application(
+				$(document.body),
+				{ layout : "def" }
+			);
+        </script>
+    </body>
+</html>

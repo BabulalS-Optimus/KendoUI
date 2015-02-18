@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Welcome to Kendo UI Mobile!</title>
+        <link href="http://cdn.kendostatic.com/2014.1.318/styles/kendo.mobile.all.min.css" rel="stylesheet" />
+        <script src="http://cdn.kendostatic.com/2014.1.318/js/jquery.min.js"></script>
+        <script src="http://cdn.kendostatic.com/2014.1.318/js/kendo.all.min.js"></script>
+		<style>
+			.km-mycustomicon:after,
+			.km-mycustomicon:before
+			{
+				content: "\e0cf";
+			}
+		</style>	
+    </head>
+    <body>
+		<div data-role="view" data-use-native-scrolling="true">
+			<div data-role="tabstrip">
+				<a href="#" data-icon="mycustomicon">Home</a>
+				<a href="#" data-icon="contacts">Contacts</a>
+			</div>
+		</div>
+		
+        <script>
+			var app= new kendo.mobile.Application();
+        </script>
+    </body>
+</html>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Welcome to Kendo UI Mobile!</title>
+   <link href="http://cdn.kendostatic.com/2014.2.903/styles/kendo.common.min.css" rel="stylesheet" />
+<link href="http://cdn.kendostatic.com/2014.2.903/styles/kendo.default.min.css" rel="stylesheet" />
+     <script src="http://cdn.kendostatic.com/2014.1.318/js/jquery.min.js"></script>
+        <script src="http://cdn.kendostatic.com/2014.1.318/js/kendo.all.min.js"></script>
+    </head>
+	
+    <body>
+
+		<div data-role="view">
+			<div id="chart" ></div>
+			<div id="grid" ></div>
+		</div>
+     
+		<script>
+			var app= new kendo.mobile.Application();
+			
+			var names = new kendo.data.DataSource({
+				transport: {
+					read: {
+						url: "json_data.json",
+						dataType: "json"
+					}
+				}
+			});
+			
+			$("#chart").kendoChart({
+				title: {
+					text: "Chart Random"
+				},
+				dataSource: names,
+				series: [{
+					type: "line",
+					field: "age",
+					name: "Age"
+				},{
+					type: "line",
+					field: "income",
+					name: "Incomes"
+				}],
+				categoryAxis: {
+					field: "name"
+				}
+			});
+	
+			$("#grid").kendoGrid({
+				dataSource: names,
+					columns: [
+					{
+						field: "name",
+						title: "Name"
+					},
+					{
+						field: "age",
+						title: "Age"
+					},
+					{
+						field: "income",
+						title: "Income"
+					}
+				],
+				pageable: true
+			});
+        </script>
+    </body>
+</html>

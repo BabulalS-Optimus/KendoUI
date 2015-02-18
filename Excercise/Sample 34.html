@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Welcome to Kendo UI Mobile!</title>
+        <link href="http://cdn.kendostatic.com/2014.1.318/styles/kendo.mobile.all.min.css" rel="stylesheet" />
+        <script src="http://cdn.kendostatic.com/2014.1.318/js/jquery.min.js"></script>
+        <script src="http://cdn.kendostatic.com/2014.1.318/js/kendo.all.min.js"></script>
+    </head>
+	
+    <body>
+
+		<div data-role="view">
+			<p><input type="checkbox" data-role="switch" /></p>
+			<p><input type="checkbox" data-role="switch" checked="checked"/></p>
+			<p><input type="checkbox" id="switch" />  </p>
+			
+			
+		</div>
+     
+		<script>
+			var app= new kendo.mobile.Application();
+			
+			$("#switch").kendoMobileSwitch(
+				{
+					onLabel: "Yes",
+					offLabel: "No"
+				}
+			);
+			
+        </script>
+    </body>
+</html>
