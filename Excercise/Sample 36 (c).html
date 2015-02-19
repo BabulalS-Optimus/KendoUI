@@ -20,31 +20,80 @@
 		<script>
 			var app= new kendo.mobile.Application();
 			
-			var names=[
-				{ name: "Tom Hanks", age: 44, income: 50 },
-				{ name: "Will Smith", age: 34, income: 70 },
-				{ name: "Bruce Willis", age: 52, income: 44 }
+			var people=[
+				{ id: 1, name: "Tom Hanks", age: 44, income: 50 },
+				{ id: 2, name: "Will Smith", age: 34, income: 70 },
+				{ id: 3, name: "Bruce Willis", age: 52, income: 44 }
 			];
 			
-			$("#grid").kendoGrid({
-				dataSource: names,
-					columns: [
-					{
-						field: "name",
-						title: "Name"
-					},
-					{
-						field: "age",
-						title: "Age"
-					},
-					{
-						field: "income",
-						title: "Income"
-					}
-				],
-				pageable: true
-			});
+			function findIndex(dataID){
 			
+				for( var i=0; i<people.length; i++) {
+					if(people[i].id == dataID){
+						return i;
+					}
+				}
+				
+				return null;
+			}
+			$(document).ready(function () {
+				var datasource = new kendo.data.DataSource({
+					transport: {
+						read: function (e) {
+							e.success(people);
+						},
+
+						update: function (e) {
+							people[findIndex(e.data.id)] = e.data;
+							e.success();
+						},
+						
+						create: function(e) {
+							people.push(e.data);
+							e.success(e.data);
+						},
+						
+						destroy: function(e) {
+							people.pop(e.data);
+							e.success();
+						}
+					},
+					schema: {
+						model: {
+							id: "id",
+							fields: {
+								id: { editable: false, nullable: true },
+								name: { validation: { required: true } },
+								age: { type: "number", validation: { required: true, min: 1} },
+								income: { type: "number", validation: { min: 0, required: true } }
+							}
+						}
+					}
+				});
+			
+			
+				$("#grid").kendoGrid({
+					dataSource: datasource,
+						columns: [
+						{
+							field: "name",
+							title: "Name"
+						},
+						{
+							field: "age",
+							title: "Age"
+						},
+						{
+							field: "income",
+							title: "Income"
+						},
+						{ command: ["edit", "destroy"], title: "&nbsp;", width: "200px" }
+					],
+					pageable: true,
+					editable: "inline",
+					toolbar: ["create"]
+				});
+			});
         </script>
     </body>
 </html>

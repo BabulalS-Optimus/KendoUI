@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Welcome to Kendo UI Mobile!</title>
+		<style>html { font-size: 12px; font-family: Arial, Helvetica, sans-serif; }</style>
+		<link href="http://cdn.kendostatic.com/2014.2.903/styles/kendo.common.min.css" rel="stylesheet" />
+		<link href="http://cdn.kendostatic.com/2014.2.903/styles/kendo.default.min.css" rel="stylesheet" />
+        <script src="http://cdn.kendostatic.com/2014.1.318/js/jquery.min.js"></script>
+        <script src="http://cdn.kendostatic.com/2014.1.318/js/kendo.all.min.js"></script>
+    </head>
+	
+    <body>
+
+		<div data-role="view">
+			<div id="grid" >
+				
+			</div>
+		</div>
+     
+		<script>
+			var datasource = new kendo.data.DataSource({
+				transport: {
+					// Read the data from service using GET method
+					read:{
+						url: "json_data.json",
+						type: "get",
+						dataType: "json"
+					},
+					// send the updated data to the service using POST method
+					update: {
+						url: "json_data.json",
+						type: "post",
+						dataType: "json"
+					},
+					// send the new data to the service using POST method
+					create: {
+						url: "json_data.json",
+						type: "post",
+						dataType: "json"
+					},
+					// send the delete request to the server
+					destroy: {
+						url: "json_data.json",
+						type: "delete",
+						dataType: "json"
+					}						
+				},
+				schema: {
+					model: {
+						id: "id",
+						fields: {
+							id: { editable: false, nullable: true },
+							name: { validation: { required: true } },
+							age: { type: "number", validation: { required: true, min: 1} },
+							income: { type: "number", validation: { min: 0, required: true } }
+						}
+					}
+				}
+			});
+			
+			$("#grid").kendoGrid({
+				dataSource: datasource,
+					columns: [
+					{
+						field: "name",
+						title: "Name"
+					},
+					{
+						field: "age",
+						title: "Age"
+					},
+					{
+						field: "income",
+						title: "Income"
+					},
+					{ command: ["edit", "destroy"], title: "&nbsp;", width: "200px" }
+				],
+				pageable: true,
+				editable: "inline",
+				toolbar: ["create"]
+			});
+			
+        </script>
+    </body>
+</html>
